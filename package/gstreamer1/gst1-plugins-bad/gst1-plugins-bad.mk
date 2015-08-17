@@ -88,7 +88,6 @@ GST1_PLUGINS_BAD_CONF_OPT += \
 	--disable-sbc \
 	--disable-schro \
 	--disable-zbar \
-	--disable-rtmp \
 	--disable-spandsp \
 	--disable-gsettings \
 	--disable-sndio \
@@ -705,6 +704,13 @@ GST1_PLUGINS_BAD_CONF_OPT += --enable-hls
 GST1_PLUGINS_BAD_DEPENDENCIES += gnutls
 else
 GST1_PLUGINS_BAD_CONF_OPT += --disable-hls
+endif
+
+ifeq ($(BR2_PACKAGE_GST1_PLUGINS_BAD_PLUGIN_RTMP),y)
+GST1_PLUGINS_BAD_CONF_OPT += --enable-rtmp
+GST1_PLUGINS_BAD_DEPENDENCIES += librtmp
+else
+GST1_PLUGINS_BAD_CONF_OPT += --disable-rtmp
 endif
 
 # Add GPL license if GPL licensed plugins enabled.
